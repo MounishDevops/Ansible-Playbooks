@@ -1,0 +1,14 @@
+---
+- name: "create a directory"
+  hosts: localhost
+  vars:
+    filepath: /opt
+    filename: test
+  tasks:
+  - name: "create a directory"
+    file:
+      path: "{{ filepath }}/{{ filename }}"
+      state: directory
+    register: output
+  debug: "{{ output.rc }}"
+      

@@ -1,0 +1,13 @@
+- name: with_list
+  ansible.builtin.debug:
+    msg: "{{ item }}"
+  with_list:
+    - one
+    - two
+
+- name: with_list -> loop
+  ansible.builtin.debug:
+    msg: "{{ item }}"
+  loop:
+    - one
+    - two

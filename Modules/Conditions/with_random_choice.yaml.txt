@@ -1,0 +1,9 @@
+- name: with_random_choice
+  ansible.builtin.debug:
+    msg: "{{ item }}"
+  with_random_choice: "{{ my_list }}"
+
+- name: with_random_choice -> loop (No loop is needed here)
+  ansible.builtin.debug:
+    msg: "{{ my_list|random }}"
+  tags: random

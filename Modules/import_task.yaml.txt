@@ -1,0 +1,19 @@
+- hosts: all
+  tasks:
+    - debug:
+        msg: task1
+
+    - name: Include task list in play
+      import_tasks: stuff.yaml
+
+    - debug:
+        msg: task10
+
+- hosts: all
+  tasks:
+    - debug:
+        msg: task1
+
+    - name: Apply conditional to all imported tasks
+      import_tasks: stuff.yaml
+      when: hostvar is defined

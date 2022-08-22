@@ -1,0 +1,29 @@
+- hosts: localhost
+  tasks:
+    - debug:
+        msg: play1
+
+- name: Include a play after another play
+  include: otherplays.yaml
+
+
+- hosts: all
+  tasks:
+    - debug:
+        msg: task1
+
+    - name: Include task list in play
+      include: stuff.yaml
+
+    - debug:
+        msg: task10
+
+- hosts: all
+  tasks:
+    - debug:
+        msg: task1
+
+    - name: Include task list in play only if the condition is true
+      include: "{{ hostvar }}.yaml"
+      static: no
+      when: hostvar is defined
