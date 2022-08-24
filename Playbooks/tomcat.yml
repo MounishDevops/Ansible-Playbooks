@@ -29,3 +29,7 @@
   - name: Verifying tomcat9 Directory
     stat:
       path: /opt/tomcat9
+    register: tomcatPath
+
+  - debug:
+      msg: "{{ tomcatPath }}"
