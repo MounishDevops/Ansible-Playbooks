@@ -1,0 +1,22 @@
+---
+- name: Tomcat installation on Redhat Server
+  hosts: all
+  become: true
+  tasks:
+  - name: Tomcat Require's JAVA Verifying if Java is avaliable
+    shell: java -version 2>&1 | grep version | awk '{print $3}' | sed 's/"//g'
+    register: javaversion
+
+  - debug:
+      msg: "{{ javaversion }}"
+
+  - name: Install Java if it is not installed
+    yum:
+      name: java
+      state: latest
+    when: javaversion.stdout == ""
+
+  - name: Creating user for tomcat
+    user:
+      name: webserver
+      shell: /bin/false
