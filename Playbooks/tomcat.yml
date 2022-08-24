@@ -27,7 +27,7 @@
       dest: /opt/tomcat9.tar.gz
 
   - name: Extracting Tomcat Package
-    command: tar -xf tomcat9.tar.gz -C /opt/tomcat9
+    command: tar -xf /opt/tomcat9.tar.gz -C /opt/tomcat9
 
   - name: Verifying tomcat9 Directory
     stat:
