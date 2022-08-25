@@ -27,13 +27,13 @@
       dest: /opt/tomcat9.tar.gz
   
   - name: Create a Tomcat Directory
-      file:
-        path: /opt/tomcat9
-        owner: webserver
-        group: webserver
-        mode: 755
-        recurse: yes
-        state: directory
+    file:
+      path: /opt/tomcat9
+      owner: webserver
+      group: webserver
+      mode: 755
+      recurse: yes
+      state: directory
 
   - name: download & unarchive tomcat10 
       unarchive:
