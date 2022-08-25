@@ -46,7 +46,7 @@
   - name: enabling  tomcat service
     service: 
       name: tomcat
-      enable: yes
+      enabled: yes
 
   - name: starting tomcat
     service:
