@@ -23,23 +23,22 @@
 
   - name: Downloading Tomcat Package
     get_url:
-      url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz
+      url: 
       dest: /opt/tomcat9.tar.gz
+  
+  - name: Create a Tomcat Directory
+      file:
+        path: /opt/tomcat9
+        owner: webserver
+        group: webserver
+        mode: 755
+        recurse: yes
+        state: directory
 
-  - name: Creating tomcat Directory
-    file:
-      path: /opt/tomcat9
-      state: directory
-      owner: webserver
-      mode: 0644 
-
-  - name: Extracting Tomcat Package
-    command: tar -xf /opt/tomcat9.tar.gz -C /opt/tomcat9
-
-  - name: Verifying tomcat9 Directory
-    stat:
-      path: /opt/tomcat9
-    register: tomcatPath
-
-  - debug:
-      msg: "{{ tomcatPath }}"
+  - name: download & unarchive tomcat10 
+      unarchive:
+        src: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz
+        dest: /opt/tomcat10
+        remote_src: yes
+        extra_opts: [--strip-components=1]
+ 
