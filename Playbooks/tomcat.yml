@@ -36,4 +36,19 @@
       dest: /opt/tomcat9
       remote_src: yes
       extra_opts: [--strip-components=1]
- 
+
+  - name: Copying service file for tomcat
+    copy:
+      src: "/opt/Ansible-Playbooks/tomcat.service"
+      dest: "/etc/systemd/system"
+      mode: 0775
+
+  - name: enabling  tomcat service
+    service: 
+      name: tomcat
+      enable: yes
+
+  - name: starting tomcat
+    service:
+      name: tomcat
+      state: started
