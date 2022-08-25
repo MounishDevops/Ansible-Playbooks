@@ -20,11 +20,6 @@
     user:
       name: webserver
       shell: /bin/false
-
-  - name: Downloading Tomcat Package
-    get_url:
-      url: 
-      dest: /opt/tomcat9.tar.gz
   
   - name: Create a Tomcat Directory
     file:
