@@ -1,0 +1,53 @@
+---
+- name: installing docker on redhat 
+  hosts: docker
+  tasks:
+    - name: update yum repo
+      yum:
+        update_cache: true
+      become: true
+      become_method: sudo
+      become_user: root
+
+    - name: install yum-utils
+      yum:
+        name: yum-utils
+        state: installed
+      become: true
+      become_method: sudo
+      become_user: root
+    - name: add docker repo to yum repos
+      shell: sudo yum config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+
+    - name: installing docker
+      yum:
+        name: docker-ce
+        state: installed
+      become: true
+      become_method: sudo
+      become_user: root
+
+    - name: enable docker
+      service:
+        name: docker
+        enabled: true
+      become: true
+      become_method: sudo
+      become_user: root
+    
+    - name: start docker
+      service:
+        name: docker
+        state: started
+      become: true
+      become_method: sudo
+      become_user: root
+    - name: verify docker is running
+      shell: service docker status
+      register: Status
+      become: true
+      become_method: sudo
+      become_user: root
+    - name: service status
+      debug:
+        msg: "{{ Status }}"
